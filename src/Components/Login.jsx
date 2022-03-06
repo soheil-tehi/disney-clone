@@ -1,9 +1,12 @@
 import React, { useEffect } from "react";
-import { selectUserName, setUserLoginDetails, setSignOutState } from '../feature/user/userSlice'
-import { useDispatch, useSelector } from 'react-redux'
-import { useHistory } from 'react-router-dom'
-import { auth, provider } from '../firebase'
-
+import {
+  selectUserName,
+  setUserLoginDetails,
+  setSignOutState,
+} from "../feature/user/userSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
+import { auth, provider } from "../firebase";
 
 //style component
 import {
@@ -22,30 +25,31 @@ export default function Login() {
   const history = useHistory();
   const userName = useSelector(selectUserName);
 
-  useEffect(() => {
-    auth.onAuthStateChanged(async (user) => {
-      if (user) {
-        setUser(user);
-        history.push("/home");
-      }
-    });
-  }, [userName]);
+  // useEffect(() => {
+  //   auth.onAuthStateChanged(async (user) => {
+  //     if (user) {
+  //       setUser(user);
+  //       history.push("/home");
+  //     }
+  //   });
+  // }, [userName]);
 
   const handleAuth = () => {
-    if (!userName) {
-      auth
-        .signInWithPopup(provider)
-        .then((result) => setUser(result.user))
-        .catch((error) => console.log(error));
-    } else if (userName) {
-      auth
-        .signOut()
-        .then(() => {
-          dispatch(setSignOutState());
-          history.push("/");
-        })
-        .catch((error) => console.log(error));
-    }
+    // if (!userName) {
+    //   auth
+    //     .signInWithPopup(provider)
+    //     .then((result) => setUser(result.user))
+    //     .catch((error) => console.log(error));
+    // } else if (userName) {
+    //   auth
+    //     .signOut()
+    //     .then(() => {
+    //       dispatch(setSignOutState());
+    //       history.push("/");
+    //     })
+    //     .catch((error) => console.log(error));
+    // }
+    history.push("/home");
   };
 
   const setUser = (user) => {

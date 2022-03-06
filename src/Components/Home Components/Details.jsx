@@ -2,55 +2,68 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useParams } from "react-router-dom";
 import db from "../../firebase";
+//movies data
+import { movies } from "../../disneyPlusMoviesData";
 
 export default function Details(props) {
-  const {id} = useParams();
-  const [detailData, setDetailData] = useState({});
+  const { id } = useParams();
+  const [movie, setMovie] = useState({});
 
-    useEffect(() => {
-      db.collection("movies")
-        .doc(id)
-        .get()
-        .then((data) => {
-          setDetailData(data.data());
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-     }, [id]);
+  useEffect(() => {
+    
+    const findMovie = movies.find((item) => item.id == id);
+    setMovie(findMovie)
+  },[]);
+
+  // useEffect(() => {
+  //   db.collection("movies")
+  //     .doc(id)
+  //     .get()
+  //     .then((data) => {
+  //       setprops.movie(data.data());
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     });
+  //  }, [id]);
 
   return (
-    <Container>
-      <Background>
-        <img alt={detailData.title} src={detailData.backgroundImg} />
-      </Background>
-      <ImgTitle>
-        <img alt={detailData.title} src={detailData.titleImg} />
-      </ImgTitle>
-      <ContentMeta>
-        <Controls>
-          <Player>
-            <img src="/images/play-icon-black.png" alt="" />
-            <span>Play</span>
-          </Player>
-          <Trailer>
-            <img src="/images/play-icon-white.png" alt="" />
-            <span>Trailer</span>
-          </Trailer>
-          <AddList>
-            <span />
-            <span />
-          </AddList>
-          <GroupWatch>
-            <div>
-              <img src="/images/group-icon.png" alt="" />
-            </div>
-          </GroupWatch>
-        </Controls>
-        <SubTitle>{detailData.subTitle}</SubTitle>
-        <Description>{detailData.description}</Description>
-      </ContentMeta>
-    </Container>
+
+      <Container>
+        <Background>
+          {/* <img alt={props.movie.title} src={props.movie.backgroundImg} /> */}
+          <img alt={movie.title} src={movie.backgroundImg} />
+        </Background>
+        <ImgTitle>
+          {/* <img alt={props.movie.title} src={props.movie.titleImg} /> */}
+          <img alt={movie.title} src={movie.titleImg} />
+        </ImgTitle>
+        <ContentMeta>
+          <Controls>
+            <Player>
+              <img src="/images/play-icon-black.png" alt="" />
+              <span>Play</span>
+            </Player>
+            <Trailer>
+              <img src="/images/play-icon-white.png" alt="" />
+              <span>Trailer</span>
+            </Trailer>
+            <AddList>
+              <span />
+              <span />
+            </AddList>
+            <GroupWatch>
+              <div>
+                <img src="/images/group-icon.png" alt="" />
+              </div>
+            </GroupWatch>
+          </Controls>
+          {/* <SubTitle>{props.movie.subTitle}</SubTitle>
+          <Description>{props.movie.description}</Description> */}
+          <SubTitle>{movie.subTitle}</SubTitle>
+          <Description>{movie.description}</Description>
+        </ContentMeta>
+      </Container>
   );
 }
 
