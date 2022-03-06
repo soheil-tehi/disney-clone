@@ -91,25 +91,33 @@ export const NavMenu = styled.div`
 `;
 
 export const Login = styled.a`
-  background-color: rgba(0, 0, 0, 0.6);
-  padding: 8px 16px;
-  text-transform: uppercase;
-  letter-spacing: 1.5px;
-  border: 1px solid #f9f9f9;
+  /* background-color: rgba(0, 0, 0, 0.6); */
+  /* padding: 8px 16px; */
+  /* height:40px ;
+  text-transform: uppercase; */
+  /* letter-spacing: 1.5px; */
+  /* border: 1px solid #f9f9f9;
   border-radius: 4px;
   transition: all 0.2s ease 0s;
-  cursor: pointer;
+  cursor: pointer;  */
 
-  &:hover {
+  /* &:hover {
     background-color: #f9f9f9;
     color: #000;
     border-color: transparent;
-  }
+  } */
 `;
 
 export const UserImg = styled.img`
   height: 100%;
   border-radius: 15px;
+  @media (max-width: 270px) {
+    width: 30px;
+    height: 30px;
+  }
+  @media (max-width: 245px) {
+    display: none;
+  }
 `;
 
 export const DropDown = styled.div`
@@ -120,7 +128,7 @@ export const DropDown = styled.div`
   background: rgba(19, 19, 19);
   border: 1px solid red;
   border-radius: 4px;
-  padding: 10px;
+  /* padding: 10px; */
   font-size: 14px;
   font-weight: 600;
   letter-spacing: 1px;
